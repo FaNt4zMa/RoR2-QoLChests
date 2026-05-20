@@ -50,10 +50,10 @@ public static class HighlightHandler
             .Instance.GetCategoryHighlightColorConfig(highlightCategory.Category)
             .Value;
 
-        highlight.isOn = true;
-        highlight.enabled = true;
         highlight.highlightColor = Highlight.HighlightColor.custom;
         highlight.CustomColor = Constants.GetColor(highlightConfigColor);
+        highlight.isOn = true;
+        highlight.enabled = true;
         if (highlight.targetRenderer == null)
         {
             Log.LogWarning($"Highlight on {interactable.name} has null targetRenderer - highlight probably won't work");

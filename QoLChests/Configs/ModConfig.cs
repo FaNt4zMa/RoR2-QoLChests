@@ -47,7 +47,7 @@ public class ModConfig
         HighlightNewtStatues,
         HighlightShrines;
 
-    public ConfigEntry<float> HideTime;
+    public ConfigEntry<float> HideTime, HighlightOpacity;
     public ConfigEntry<ConfigHighlightColor> HighlightColor,
         HighlightChestColor,
         HighlightShopColor,
@@ -85,6 +85,9 @@ public class ModConfig
         HighlightNewtStatues = config.Bind("Highlight", "Newt Statues", true, "Highlight Newt Statues");
         HighlightPressurePlates = config.Bind("Highlight", "Pressure Plates", true, "Highlight Pressure Plates");
         HighlightShrines = config.Bind("Highlight", "Shrines", false, "Highlight Shrines");
+
+        HighlightOpacity = config.Bind("Highlight", "Opacity", 1f, "Highlight opacity");
+        HighlightOpacity.SettingChanged += (sender, args) => InteractableStateHandler.Reset();
 
         HighlightColor = config.Bind(
             "Highlight",
@@ -204,6 +207,7 @@ public class ModConfig
             );
 
             RiskOfOptionsCompat.AddSliderNumberOptions(restartRequired: false, 0.1f, 5f, HideTime);
+            RiskOfOptionsCompat.AddSliderToPercentageOptionsDecimal(restartRequired: false, HighlightOpacity);
             RiskOfOptionsCompat.AddDropdownOptions(
                 false,
                 HighlightColor,
